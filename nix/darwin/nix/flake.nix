@@ -97,7 +97,10 @@
         dock.autohide = true;
         finder.AppleShowAllExtensions = true;
         finder.FXPreferredViewStyle = "clmv";
-        loginwindow.LoginwindowText = "tantosec.com";
+        loginwindow.LoginwindowText = ".";
+        loginwindow.GuestEnabled = false;
+        NSGlobalDomain.KeyRepeat = 2;
+        NSGlobalDomain.AppleInterfaceStyle = "Dark";
         screencapture.location = "~/Pictures/screenshots";
       };
       security.pam.enableSudoTouchIdAuth = true;
