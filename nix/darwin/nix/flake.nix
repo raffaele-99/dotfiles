@@ -94,6 +94,7 @@
       # macOS system configuration
       system.defaults = {
         dock.mru-spaces = false;
+        dock.autohide = true;
         finder.AppleShowAllExtensions = true;
         finder.FXPreferredViewStyle = "clmv";
         loginwindow.LoginwindowText = "tantosec.com";
