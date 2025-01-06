@@ -46,6 +46,7 @@
         ];
         casks = [
           "the-unarchiver"
+          "burp-suite-professional"
         ];
         masApps = {
         };
