@@ -31,6 +31,7 @@
           # pkgs.hashcat
           pkgs.tree
           pkgs.jq
+          pkgs.yq
           pkgs.python314
           pkgs.semgrep
           pkgs.wpscan
