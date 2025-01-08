@@ -22,7 +22,7 @@
           pkgs.mkalias
           pkgs.rectangle
           pkgs.tmux
-          pkgs.alacritty
+          pkgs.iterm2
           pkgs.obsidian
           pkgs.netcat
           pkgs.nmap
@@ -40,6 +40,7 @@
           pkgs.wget
           # pkgs._1password
           # pkgs._1password-gui
+          pkgs.hidden-bar
           ];
 
       # Necessary for using flakes on this system.
@@ -66,13 +67,18 @@
       users.users.luca.uid = 501;
       users.users.luca.shell = pkgs.zsh;
 
-      # Disable the fish prompt.
-      programs.fish.promptInit = "";
-
       # macOS system configuration
       system.defaults = {
         dock.mru-spaces = false;
-        dock.autohide = true;
+        dock.orientation = "bottom";
+        dock.autohide = false;
+        dock.persistent-apps = [
+          "/Applications/Arc.app"
+          "/Applications/Burp Suite Professional.app"
+          "/Applications/Firefox Developer Edition.app"
+          "/System/Applications/Calendar.app" 
+          "${pkgs.iterm2}/Applications/iTerm2.app"
+        ];
         finder.AppleShowAllExtensions = true;
         finder.FXPreferredViewStyle = "clmv";
         loginwindow.LoginwindowText = ".";
