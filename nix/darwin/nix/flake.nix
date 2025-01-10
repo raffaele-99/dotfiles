@@ -30,7 +30,9 @@
           pkgs.gobuster
           pkgs.ffuf
           pkgs.zsh
-          # pkgs.hashcat
+          pkgs.go
+          pkgs.slack
+          pkgs.thunderbird
           pkgs.tree
           pkgs.jq
           pkgs.yq
@@ -74,7 +76,9 @@
         dock.autohide = false;
         dock.persistent-apps = [
           "/Applications/Arc.app"
-          "/Applications/Burp Suite Professional.app"
+            "${pkgs.slack}/Applications/Slack.app"
+            "${pkgs.thunderbird}/Applications/Thunderbird.app"
+            "/Applications/Burp Suite Professional.app"
           "/Applications/Firefox Developer Edition.app"
           "/System/Applications/Calendar.app" 
           "${pkgs.iterm2}/Applications/iTerm2.app"
