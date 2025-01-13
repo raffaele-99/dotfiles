@@ -4,12 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs"; 
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
@@ -89,22 +84,6 @@
         screencapture.location = "~/Pictures/screenshots";
       };
       security.pam.enableSudoTouchIdAuth = true;
-
-      homebrew = {
-        enable = true;
-        brews = [
-            "mas"
-        ];
-        casks = [
-          "the-unarchiver"
-          "burp-suite-professional"
-        ];
-        masApps = {
-        };
-        onActivation.cleanup = "zap";
-        onActivation.autoUpdate = true;
-        onActivation.upgrade = true;
-      };
 
       fonts.packages = 
         [ pkgs.nerd-fonts.jetbrains-mono
