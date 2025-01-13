@@ -74,9 +74,7 @@
         dock.orientation = "bottom";
         dock.autohide = false;
         dock.persistent-apps = [
-          "/Applications/Arc.app"
-            "${pkgs.slack}/Applications/Slack.app"
-            "${pkgs.thunderbird}/Applications/Thunderbird.app"
+          "/Applications/Arc.app" 
             "/Applications/Burp Suite Professional.app"
           "/Applications/Firefox Developer Edition.app"
           "/System/Applications/Calendar.app" 
