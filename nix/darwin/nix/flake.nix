@@ -32,7 +32,6 @@
           pkgs.zsh
           pkgs.go
           pkgs.slack
-          pkgs.thunderbird
           pkgs.tree
           pkgs.jq
           pkgs.yq
