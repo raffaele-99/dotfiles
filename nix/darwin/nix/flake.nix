@@ -31,7 +31,7 @@
           pkgs.ffuf
           pkgs.zsh
           pkgs.go
-          pkgs.slack
+          # pkgs.slack
           pkgs.tree
           pkgs.jq
           pkgs.yq
