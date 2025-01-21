@@ -6,48 +6,38 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
   let
     configuration = { pkgs, config, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [ pkgs.neovim
-          pkgs.mkalias
-          pkgs.rectangle
-          pkgs.tmux
-          pkgs.obsidian
-          pkgs.netcat
-          pkgs.nmap
-          pkgs.masscan
-          pkgs.gobuster
-          pkgs.ffuf
-          pkgs.zsh
-          pkgs.go
-          # pkgs.slack
-          pkgs.tree
-          pkgs.jq
-          pkgs.yq
-          pkgs.python314
-          pkgs.semgrep
-          pkgs.wpscan
-          pkgs.wget
-          # pkgs._1password
-          # pkgs._1password-gui
-          pkgs.hidden-bar
-          ];
+      environment.systemPackages = with pkgs; [ 
+          neovim
+          mkalias
+          rectangle
+          tmux
+          obsidian
+          netcat
+          nmap
+          masscan
+          gobuster
+          ffuf
+          zsh
+          go
+          fish
+          tree
+          jq
+          yq
+          python314
+          semgrep
+          wget
+          hidden-bar
+       ];
 
-      # Necessary for using flakes on this system.
+
       nix.settings.experimental-features = "nix-command flakes";
 
-      # Enable alternative shell support in nix-darwin.
-      # programs.fish.enable = true;
+      programs.fish.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -65,7 +55,7 @@
       # Set zsh as the default shell.
       users.knownUsers = [ "luca" ];
       users.users.luca.uid = 501;
-      users.users.luca.shell = pkgs.zsh;
+      users.users.luca.shell = pkgs.fish;
 
       # macOS system configuration
       system.defaults = {
@@ -74,7 +64,7 @@
         dock.autohide = false;
         dock.persistent-apps = [
           "/Applications/Arc.app" 
-            "/Applications/Burp Suite Professional.app"
+          "/Applications/Burp Suite Professional.app"
           "/Applications/Firefox Developer Edition.app"
           "/System/Applications/Calendar.app" 
           "/Applications/Ghostty.app"
@@ -106,9 +96,9 @@
         onActivation.upgrade = true;
       };
 
-      fonts.packages = 
-        [ pkgs.nerd-fonts.jetbrains-mono
-        ];
+      fonts.packages = [ 
+          pkgs.nerd-fonts.jetbrains-mono
+      ];
 
       system.activationScripts.applications.text = let
         env = pkgs.buildEnv {
@@ -131,13 +121,10 @@
       '';
 
       users.users.luca.home = "/Users/luca";
-        # home-manager.backupFileExtension = "backup";
 
     };
   in
   {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."tantobook" = nix-darwin.lib.darwinSystem {
       modules = [ 
         configuration 
@@ -148,11 +135,6 @@
               user = "luca";
             };
           }
-          #          home-manager.darwinModules.home-manager {  
-          #            home-manager.useGlobalPkgs = true;
-          #  home-manager.useUserPackages = true;
-          #  home-manager.users.luca = import ./home.nix;
-          #   }
       ];
     };
   };
