@@ -22,7 +22,6 @@
           pkgs.mkalias
           pkgs.rectangle
           pkgs.tmux
-          pkgs.iterm2
           pkgs.obsidian
           pkgs.netcat
           pkgs.nmap
@@ -78,7 +77,7 @@
             "/Applications/Burp Suite Professional.app"
           "/Applications/Firefox Developer Edition.app"
           "/System/Applications/Calendar.app" 
-          "${pkgs.iterm2}/Applications/iTerm2.app"
+          "/Applications/Ghostty.app"
         ];
         finder.AppleShowAllExtensions = true;
         finder.FXPreferredViewStyle = "clmv";
@@ -98,6 +97,7 @@
         casks = [
           "the-unarchiver"
           "burp-suite-professional"
+          "ghostty"
         ];
         masApps = {
         };
