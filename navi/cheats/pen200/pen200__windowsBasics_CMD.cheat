@@ -13,7 +13,7 @@ dir <filepath>
 echo %cd%
 
 # list environment variables
-SET
+set
 
 # retrieve specific environment variable
 echo %<variable_name>%

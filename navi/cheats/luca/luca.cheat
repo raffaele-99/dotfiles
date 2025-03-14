@@ -12,3 +12,8 @@ nvim <nix_flake_dir><nix_flake>
 
 # update flake
 cd <nix_flake_dir> && nix flake update
+
+% navi
+
+# edit navi config
+nvim $HOME/.config/navi/config.yaml

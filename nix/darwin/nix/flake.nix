@@ -57,7 +57,7 @@
       # Allow unfree packages.
       nixpkgs.config.allowUnfree = true;
 
-      # Set zsh as the default shell.
+      # Set fish as the default shell.
       users.knownUsers = [ "luca" ];
       users.users.luca.uid = 501;
       users.users.luca.shell = pkgs.fish;
