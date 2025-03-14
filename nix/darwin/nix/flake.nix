@@ -29,7 +29,7 @@
           jq
           yq
           python314
-          # semgrep
+          # semgrep - currently broken
           navi
           wget
           hidden-bar
