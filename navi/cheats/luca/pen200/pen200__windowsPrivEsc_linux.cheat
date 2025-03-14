@@ -1,0 +1,8 @@
+% linux, windows, sh, enum
+; this cheatsheet contains commands to be used in linux for the purpose of attacking windows hosts
+
+# connect to windows machine via WinRM - with username & password 
+evil-winrm -i <host-address> -u <username> -p <password>
+
+# connect to windows machine via RDP - with username & password
+xfreerdp /u:<username> /p:<password> /v:<host-address> /dynamic-resolution

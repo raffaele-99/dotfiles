@@ -1,0 +1,42 @@
+% windows, pwsh, enum
+
+# list all users
+Get-LocalUser
+
+# list all groups 
+Get-LocalGroup
+
+# list all members in a group
+Get-LocalGroupMember <groupname>
+
+# list running processes
+Get-Process
+
+# list details for specific process
+Get-Process <processname> | Format-List *
+
+# list installed apps (displayname only)
+Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname
+Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname
+
+# list installed apps (all properties)
+Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
+Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*"
+
+# search files matching a specific name
+Get-ChildItem -Path <search-path> -Include <filename> -File -Recurse -ErrorAction SilentlyContinue
+
+# search files matching a specific name while excluding another name
+Get-ChildItem -Path <search-path> -Include <filename> -Exclude <filenames-to-ignore> -File -Recurse -ErrorAction SilentlyContinue 
+
+# search documents and text files
+Get-ChildItem -Path <search-path> -Include *.txt,*.pdf,*.xls,*.xlsx,*.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue
+
+# get command history for pwsh
+Get-History
+
+# get command history for pwsh via PSReadline
+(Get-PSReadlineOption).HistorySavePath
+
+# get file from remote host
+iwr -uri <file-URL> -Outfile <output-filename>

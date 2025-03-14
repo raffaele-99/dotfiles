@@ -1,0 +1,6 @@
+% windows, pwsh, privesc
+
+# create PSCredential object
+$password = ConvertTo-SecureString "<password>" -AsPlainText -Force
+$cred = New-Object System.Management.Automation.PSCredential("<username>", $password)
+Enter-PSSession -ComputerName <computer-name> -Credential $cred

@@ -29,10 +29,15 @@
           jq
           yq
           python314
-          semgrep
+          # semgrep
+          ghostty
           wget
           hidden-bar
-       ];
+          docker
+          gh
+          exiftool
+          hugo
+        ];
 
 
       nix.settings.experimental-features = "nix-command flakes";
@@ -66,8 +71,9 @@
           "/Applications/Arc.app" 
           "/Applications/Burp Suite Professional.app"
           "/Applications/Firefox Developer Edition.app"
-          "/System/Applications/Calendar.app" 
           "/Applications/Ghostty.app"
+          "/System/Applications/Calendar.app" 
+          "/Applications/Slack.app"
         ];
         finder.AppleShowAllExtensions = true;
         finder.FXPreferredViewStyle = "clmv";
@@ -77,17 +83,18 @@
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
         screencapture.location = "~/Pictures/screenshots";
       };
-      security.pam.enableSudoTouchIdAuth = true;
+      security.pam.services.sudo_local.touchIdAuth = true;
 
       homebrew = {
         enable = true;
         brews = [
             "mas"
+            "openjdk@11"
         ];
         casks = [
           "the-unarchiver"
-          "burp-suite-professional"
-          "ghostty"
+          "burp-suite-professional" # installing via brew as burp pro on nix is a pain
+          "ghostty" # installing via brew as nix version is broken 
         ];
         masApps = {
         };
@@ -121,7 +128,6 @@
       '';
 
       users.users.luca.home = "/Users/luca";
-
     };
   in
   {

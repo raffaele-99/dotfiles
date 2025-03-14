@@ -1,0 +1,18 @@
+% linux, windows, sh, enum
+; this cheatsheet contains commands to be used in linux for the purpose of enumerating windows hosts
+
+# start hosting winpeas at port 80
+cp /usr/share/peass/winpeas/winPEASx64.exe .
+sudo python3 -m http.server 80
+
+# start hosting winpeas at non-sudo port
+cp /usr/share/peass/winpeas/winPEASx64.exe .
+python3 -m http.server <port>
+
+# start hosting seatbelt at port 80
+wget -O seatbelt.exe https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/refs/heads/master/Seatbelt.exe
+sudo python3 -m http.server 80
+
+# start hosting seatbelt at non-sudo port
+wget -O seatbelt.exe https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/refs/heads/master/Seatbelt.exe
+python3 -m http.server <port>

@@ -1,0 +1,14 @@
+% nix-darwin
+;TODO: fix nix configs (can use https://github.com/rober-m/.dots as reference)
+
+$ nix_flake_dir: echo "$HOME/.dotfiles/nix/darwin/nix/"
+$ nix_flake: echo "flake.nix"
+
+# rebuild darwin configuration - work laptop
+darwin-rebuild switch --flake <nix_flake_dir>\#tantobook
+
+# edit flake - work laptop
+nvim <nix_flake_dir><nix_flake>
+
+# update flake
+cd <nix_flake_dir> && nix flake update
