@@ -30,7 +30,7 @@
           yq
           python314
           # semgrep
-          ghostty
+          navi
           wget
           hidden-bar
           docker
