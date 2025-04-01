@@ -29,7 +29,8 @@
           jq
           yq
           python314
-          # semgrep - currently broken
+          feroxbuster
+          mitmproxy
           navi
           wget
           hidden-bar
@@ -37,6 +38,8 @@
           gh
           exiftool
           hugo
+          iproute2mac
+          awscli2
         ];
 
 
@@ -90,12 +93,14 @@
         brews = [
             "mas"
             "openjdk@11"
+            "glow"
+            "semgrep"
         ];
         casks = [
           "the-unarchiver"
           "burp-suite-professional" # installing via brew as burp pro on nix is a pain
-          "ghostty" # installing via brew as nix version is broken 
-        ];
+          "ghostty" # installing via brew as nix version is broken  
+          ];
         masApps = {
         };
         onActivation.cleanup = "zap";

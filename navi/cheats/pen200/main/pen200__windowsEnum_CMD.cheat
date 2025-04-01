@@ -1,0 +1,40 @@
+% windows, cmd, enum
+
+# list all users
+net user
+
+# list details of specific user
+net user <username>
+
+# get OS, version, architecture
+systeminfo
+
+# list network interfaces
+ipconfig /all
+
+# show possible attack vectors to other systems/networks
+route print
+
+# list active network connections
+netstat -ano
+
+# search files matching a specific name
+dir /a/b/s <filename>
+
+# check permissions for a file or directory
+icacls <file-or-directory-path>
+
+# list all privileges for current user
+whoami /priv
+
+# list all groups current user belongs to
+whoami /groups
+
+# list services that have unquoted paths (excludes windows services)
+wmic service get name,pathname |  findstr /i /v "C:\Windows\\" | findstr /i /v """
+
+# list services that have unquoted paths (includes windows services; less likely to be useful)
+wmic service get name,pathname | findstr /i /v """
+
+# list scheduled tasks
+schtasks /query /fo LIST /v

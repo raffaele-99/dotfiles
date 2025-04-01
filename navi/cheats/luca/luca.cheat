@@ -17,3 +17,13 @@ cd <nix_flake_dir> && nix flake update
 
 # edit navi config
 nvim $HOME/.config/navi/config.yaml
+
+% python
+
+# make venv in current directory and activate it (fish shell)
+python3 -m venv ./.venv && source ./.venv/bin/activate.fish
+
+% aws-cli
+
+# start using aws cli as tantosec-test (PowerUserAccess)
+aws sts get-caller-identity --profile luca-aws-cli

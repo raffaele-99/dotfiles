@@ -38,5 +38,28 @@ Get-History
 # get command history for pwsh via PSReadline
 (Get-PSReadlineOption).HistorySavePath
 
-# get file from remote host
-iwr -uri <file-URL> -Outfile <output-filename>
+# list installed windows services - requires GUI or admin privs
+Get-CimInstance -ClassName win32_Service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
+
+# check permissions for a file or directory
+Get-Acl -Path <file-or-directory-path>
+
+# check startup type of service
+Get-CimInstance -ClassName win32_service | Select Name, StartMode | Where-Object {$_.Name -like '<service-name>'}
+
+# list services the current user can modify
+Get-ModifiableServiceFile
+
+# list scheduled tasks (excluding tasks authored by Microsoft)
+Get-ScheduledTask | 
+Where-Object { 
+    $_.Author -ne $null -and 
+    $_.Author -ne "" -and 
+    $_.Author -notlike "*Microsoft*" -and 
+    $_.Author -ne "Microsoft Corporation" 
+} | 
+Select-Object TaskName, Author, @{ n = 'UserId'; e = { $_.Principal.UserId }}
+
+
+# list scheduled tasks
+Get-ScheduledTask | Select-Object Author,@{Name='TaskPath';Expression={$_.TaskPath}},TaskName | Format-Table -AutoSize

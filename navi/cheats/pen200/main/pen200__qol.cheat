@@ -1,0 +1,7 @@
+% linux, sh
+
+# start hosting http server at port 80 
+sudo python3 -m http.server 80
+
+# start hosting http server at non-sudo port
+python3 -m http.server <port>
