@@ -3,7 +3,7 @@
 # not an actual setup script yet
 
 if not set -q CONTENT_DIR
-	echo "set $CONTENT_DIR global before running"
+	echo "set CONTENT_DIR globally before running"
 	exit
 end
 
