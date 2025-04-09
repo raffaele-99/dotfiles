@@ -4,9 +4,13 @@
   inputs = {
     nixpkgs.url = "nixpkgs";
     darwin.url = "github:lnl7/nix-darwin";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, darwin, ... }:
+  outputs = { self, nixpkgs, darwin, home-manager, ... }:
     let
       systemNixOS = "aarch64-linux";    # or aarch64-linux
       systemDarwin = "aarch64-darwin"; # or aarch64-darwin
@@ -15,8 +19,8 @@
       nixosConfigurations.nixosHost = nixpkgs.lib.nixosSystem {
         system = systemNixOS;
         modules = [
+	  home-manager.nixosModules.home-manager
           ./nix/nixos/configuration.nix
-          ./nix/nixos/hardware-configuration.nix
         ];
       };
 
@@ -24,8 +28,7 @@
       darwinConfigurations.macHost = darwin.lib.darwinSystem {
         system = systemDarwin;
         modules = [
-          ./nix/darwin/nix/darwin-flake.nix
-          # any other darwin modules
+          ./nix/darwin/darwin.nix
         ];
       };
     };
