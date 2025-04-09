@@ -25,7 +25,6 @@ end
 
 # put any other necessary setup tasks here
 
-# ...
 
 # define what actual setup is
 function do_all
@@ -46,3 +45,9 @@ end
 # actually run setup now
 do_all
 erase_all
+
+if test (uname) = "Darwin"
+	darwin-rebuild switch --flake $HOME/dotfiles#macHost
+else
+	sudo nixos-rebuild switch --flake $HOME/dotfiles#nixosHost
+end
