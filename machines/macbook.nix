@@ -7,13 +7,6 @@
     settings.experimental-features = "nix-command flakes";
   };
 
-  environment.systemPackages = with pkgs; [
-    navi
-    netcat
-    neovim
-    fish
-  ];
-
   system.defaults = {
     dock.mru-spaces = false;
     dock.orientation = "bottom";
