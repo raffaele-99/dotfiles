@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
       ./home.nix
     ];
 
@@ -116,9 +115,6 @@
     description = "luca";
     shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
   };
 
   programs.fish.enable = true;
