@@ -24,7 +24,9 @@ function make_symlinks_for_fish_functions
 end
 
 # put any other necessary setup tasks here
-
+function set_env_vars
+	set -Ux NAVI_CONFIG "$HOME/dotfiles/navi/config.yaml"
+end
 
 # define what actual setup is
 function do_all
@@ -45,6 +47,7 @@ end
 # actually run setup now
 do_all
 erase_all
+set_env_vars
 
 if test (uname) = "Darwin"
 	darwin-rebuild switch --flake $HOME/dotfiles#macHost
