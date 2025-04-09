@@ -1,60 +1,35 @@
 {
-  description = "NixOS config, hopefully unified.";
+  description = "Unified config for NixOS and Darwin systems";
 
   inputs = {
-
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-
+    darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
-  outputs = { self, nixpkgs, home-manager, darwin, ... }: 
-  let
-    ];
+  outputs = { self, nixpkgs, darwin, home-manager, ... }:
+    let
+      overlays = []; # Add any overlays here if needed.
+      mksystem = import ./lib/mksystem.nix { inherit nixpkgs overlays inputs; };
+    in {
+      darwinConfigurations.macbook = mksystem "macbook" {
+        system = "aarch64-darwin";
+        user = "luca";
+        darwin = true;
+      };
 
-    mkSystem = import ./lib/mksystem.nix {
-      inherit overlays nixpkgs inputs;
-    };
-  in {
-    nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
-      system = "aarch64-linux";
-      user   = "mitchellh";
-    };
+      nixosConfigurations.vm-aarch64-parallels = mksystem "vm-aarch64-parallels" {
+        system = "aarch64-linux";
+        user = "luca";
+      };
 
-    nixosConfigurations.vm-aarch64-prl = mkSystem "vm-aarch64-prl" rec {
-      system = "aarch64-linux";
-      user   = "mitchellh";
+      nixosConfigurations.framework = mksystem "framework" {
+        system = "x86_64-linux";
+        user = "luca";
+      };
     };
-
-    nixosConfigurations.vm-aarch64-utm = mkSystem "vm-aarch64-utm" rec {
-      system = "aarch64-linux";
-      user   = "mitchellh";
-    };
-
-    nixosConfigurations.vm-intel = mkSystem "vm-intel" rec {
-      system = "x86_64-linux";
-      user   = "mitchellh";
-    };
-
-    nixosConfigurations.wsl = mkSystem "wsl" {
-      system = "x86_64-linux";
-      user   = "mitchellh";
-      wsl    = true;
-    };
-
-    darwinConfigurations.macbook-pro-m1 = mkSystem "macbook-pro-m1" {
-      system = "aarch64-darwin";
-      user   = "mitchellh";
-      darwin = true;
-    };
-  };
 }
+
