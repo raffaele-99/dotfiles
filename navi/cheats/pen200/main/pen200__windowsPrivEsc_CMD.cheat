@@ -1,4 +1,0 @@
-% windows, cmd, privesc
-
-# run program as different user - requires GUI as opens new window
-runas /user:<username> <program>
