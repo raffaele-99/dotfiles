@@ -30,6 +30,8 @@
     hugo
     iproute2mac
     awscli2
+    semgrep
+    sslscan
   ];
 
   nix.settings.experimental-features = "nix-command flakes";

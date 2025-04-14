@@ -1,3 +1,3 @@
 function bearer-offline
-	bearer scan --disable-default-rules --external-rule-dir=$HOME/.luca/bearer/bearer-rules/rules $argv
+	bearer scan $argv --disable-default-rules --external-rule-dir=$HOME/.luca/bearer/bearer-rules/rules
 end

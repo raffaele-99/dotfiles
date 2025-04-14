@@ -62,3 +62,13 @@ git push --set-upstream origin peer-review -o merge_request.create
 # create merge request for QA
 git commit -m "QA"
 git push --set-upstream origin qa -o merge_request.create
+
+# switch to peer-review branch and pull latest changes
+git checkout -b peer-review
+git branch --set-upstream-to=origin/peer-review peer-review
+git pull
+
+# switch to qa branch and pull latest changes
+git checkout -b qa
+git branch --set-upstream-to=origin/qa qa
+git pull
