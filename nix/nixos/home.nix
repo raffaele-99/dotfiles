@@ -17,6 +17,8 @@
 	docker
 	go
 	navi
+	firefox-devedition
+	glow
       ];
 
       home.stateVersion = "24.11";
@@ -38,6 +40,8 @@
 	  theme = "android_notification";
 	};
       };
+
+      programs.i3status.enable = true;
 
       home.shellAliases = {
         "nrs" = "sudo nixos-rebuild switch";
