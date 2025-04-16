@@ -1,25 +1,22 @@
 % nix-darwin
 ;TODO: fix nix configs (can use https://github.com/rober-m/.dots as reference)
 
-$ nix_flake_dir: echo "$HOME/.dotfiles/nix/darwin/nix/"
-$ nix_flake: echo "flake.nix"
-
-# rebuild darwin configuration - work laptop
-darwin-rebuild switch --flake <nix_flake_dir>\#tantobook
-
-# edit flake - work laptop
-nvim <nix_flake_dir><nix_flake>
+# rebuild nix-darwin configuration
+darwin-rebuild switch --flake <flake_directory>\#<nix_config_name>
 
 # update flake
-cd <nix_flake_dir> && nix flake update
+nix flake update
 
 % navi
 
+$ dotfiles_dir: echo "$LUCA_DOTFILES_DIR"
+
+
 # edit navi config
-nvim $HOME/.config/navi/config.yaml
+nvim <dotfiles_dir>/navi/config.yaml
 
 # edit main navi cheatfile
-nvim $HOME/.dotfiles/navi/cheats/luca/luca.cheat
+nvim <dotfiles_dir>/navi/cheats/luca/luca.cheat
 
 % python
 
@@ -28,8 +25,8 @@ python3 -m venv ./.venv && source ./.venv/bin/activate.fish
 
 % aws-cli
 
-# start using aws cli as tantosec-test (PowerUserAccess)
-aws sts get-caller-identity --profile luca-aws-cli
+# start using aws cli
+aws sts get-caller-identity --profile <profile>
 
 % git
 
@@ -40,12 +37,15 @@ git reset --soft HEAD~1
 git reset --hard HEAD~1
 
 # switch to branch
+git checkout <branch_name>
+
+# create new branch
 git checkout -b <branch_name>
 
-# list branches (from remote)
+# list branches from remote
 git branch -r
 
-# list branches (local)
+# list branches from local
 git branch
 
 % gitlab
@@ -53,7 +53,7 @@ git branch
 # create merge request
 git push --set-upstream origin <branch_name> -o merge_request.create
 
-% tanto-report
+% report
 
 # create merge request for PR
 git commit -m "PR"
@@ -64,11 +64,17 @@ git commit -m "QA"
 git push --set-upstream origin qa -o merge_request.create
 
 # switch to peer-review branch and pull latest changes
-git checkout -b peer-review
+git checkout peer-review
 git branch --set-upstream-to=origin/peer-review peer-review
 git pull
 
 # switch to qa branch and pull latest changes
-git checkout -b qa
+git checkout qa
 git branch --set-upstream-to=origin/qa qa
 git pull
+
+# switch to main, pull changes, and create empty 1.0 commit
+git checkout main
+git pull
+git commit --allow-empty -m "1.0"
+

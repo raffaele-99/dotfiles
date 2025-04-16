@@ -32,6 +32,7 @@
     awscli2
     semgrep
     sslscan
+    glow
   ];
 
   nix.settings.experimental-features = "nix-command flakes";

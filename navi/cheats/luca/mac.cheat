@@ -1,0 +1,4 @@
+% macOS
+
+# get current router ip address
+netstat -nr | grep default
