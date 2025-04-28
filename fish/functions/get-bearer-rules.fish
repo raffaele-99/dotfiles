@@ -1,3 +1,5 @@
+# retrieves bearer rules from remote and saves them locally to a user-provided directory
+# ACCEPTS: directory as input
 function get-bearer-rules
 	set -l repo "https://github.com/Bearer/bearer-rules.git"
 	set -l dest $argv/bearer

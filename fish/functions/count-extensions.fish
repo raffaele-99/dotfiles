@@ -1,3 +1,4 @@
+# this used to be in bash but i used chatgpt to port it to fish so idk if it still works
 function count-extensions -d "Counts occurrences of each extension in a list of URLs"
     set infile $argv[1]
     if not test -f $infile

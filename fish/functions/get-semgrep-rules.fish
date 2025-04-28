@@ -1,3 +1,5 @@
+# retrieves semgrep rules from remote and saves them locally to a user-provided directory
+# ACCEPTS: directory as input
 function get-semgrep-rules
 	set -l dir $argv/semgrep
 	set -l dest $dir/default.yml

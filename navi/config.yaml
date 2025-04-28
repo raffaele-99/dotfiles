@@ -17,9 +17,9 @@ finder:
   command: fzf
   overrides: --with-nth 1,2
 
-cheats:
-  paths:
-    - $HOME/dotfiles/navi/cheats/luca # on unix-like os
+# cheats:
+#   paths:
+#     - $HOME/dotfiles/navi/cheats/luca # this line commented out because i am switching to 'navi repo add'
 
 shell:
   command: fish
