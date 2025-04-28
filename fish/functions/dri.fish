@@ -1,4 +1,4 @@
 function dri
 	# docker run interactive
-	docker run -it -v $(pwd):/code $argv /bin/bash
+	docker run --entrypoint "/bin/bash" -it -v $(pwd):/code $argv
 end
