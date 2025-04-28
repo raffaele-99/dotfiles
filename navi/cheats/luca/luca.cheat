@@ -11,16 +11,15 @@ nix flake update
 
 $ dotfiles_dir: echo "$LUCA_DOTFILES_DIR"
 
-
 # edit navi config
 nvim <dotfiles_dir>/navi/config.yaml
 
 # edit main navi cheatfile
 nvim <dotfiles_dir>/navi/cheats/luca/luca.cheat
 
-% python
+% python, fish
 
-# make venv in current directory and activate it (fish shell)
+# make venv in current directory and activate it
 python3 -m venv ./.venv && source ./.venv/bin/activate.fish
 
 % aws-cli
@@ -47,34 +46,4 @@ git branch -r
 
 # list branches from local
 git branch
-
-% gitlab
-
-# create merge request
-git push --set-upstream origin <branch_name> -o merge_request.create
-
-% report
-
-# create merge request for PR
-git commit -m "PR"
-git push --set-upstream origin peer-review -o merge_request.create
-
-# create merge request for QA
-git commit -m "QA"
-git push --set-upstream origin qa -o merge_request.create
-
-# switch to peer-review branch and pull latest changes
-git checkout peer-review
-git branch --set-upstream-to=origin/peer-review peer-review
-git pull
-
-# switch to qa branch and pull latest changes
-git checkout qa
-git branch --set-upstream-to=origin/qa qa
-git pull
-
-# switch to main, pull changes, and create empty 1.0 commit
-git checkout main
-git pull
-git commit --allow-empty -m "1.0"
 
