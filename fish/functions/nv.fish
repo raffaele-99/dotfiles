@@ -1,5 +1,5 @@
 function nv
-    set -l base_path "$HOME/dotfiles/navi/cheats/pen200"
+    set -l base_path "$NAVI_PATH/personal/pen200"
     set -l paths "$base_path/main"
 
     for arg in $argv

@@ -1,6 +1,12 @@
 { config, pkgs, lib, ... }:
 
 {
+
+  environment.etc."proxychains.conf".text = ''
+  [ProxyList]
+  http    127.0.0.1       3128
+  '';
+
   environment.systemPackages = with pkgs; [
     neovim
     mkalias
@@ -23,16 +29,14 @@
     mitmproxy
     navi
     wget
-    hidden-bar
     docker
     gh
-    exiftool
     hugo
-    iproute2mac
     awscli2
-    semgrep
-    sslscan
+    _1password-cli
     glow
+    semgrep
+    freerdp
   ];
 
   nix.settings.experimental-features = "nix-command flakes";
@@ -75,7 +79,6 @@
     loginwindow.LoginwindowText = ".";
     loginwindow.GuestEnabled = false;
     NSGlobalDomain.KeyRepeat = 2;
-    NSGlobalDomain.AppleInterfaceStyle = "Dark";
     screencapture.location = "~/Pictures/screenshots";
   };
 

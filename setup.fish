@@ -38,12 +38,45 @@ function set_env_vars
 end
 
 # FUNCTION
+# pull_cheats_repos
+# this pulls navi cheats (both work and personal) and saves them to ~/source
+function pull_cheats_repos
+    set -l personal_dir "$HOME/source/cheats-personal"
+    set -l work_dir     "$HOME/source/cheats-work"
+    mkdir -p (dirname $personal_dir) (dirname $work_dir)
+    if test -d $personal_dir/.git
+        git -C $personal_dir pull
+    else
+        git clone https://github.com/raffaele-99/cheats.git $personal_dir
+    end
+    if test -d $work_dir/.git
+        git -C $work_dir pull
+    else
+        git clone https://github.com/luca-tanto/cheats.git $work_dir
+    end
+end
+
+# FUNCTION
+# link_navi_cheats
+# this creates symlinks in the navi cheats folder that point to ~/source/cheats-(personal/work)
+function link_navi_cheats
+    set -l navipersonal "$NAVI_PATH/personal"
+    set -l naviwork     "$NAVI_PATH/work"
+    rm -rf $navipersonal $naviwork
+    mkdir -p (dirname $navipersonal) (dirname $naviwork)
+    ln -sfn $HOME/source/cheats-personal $navipersonal
+    ln -sfn $HOME/source/cheats-work     $naviwork
+end
+
+# FUNCTION
 # do_setup
 # this creates symlinks for your fish functions and then calls some of them to be run during setup
 function do_setup
 	make_symlinks_for_fish_functions
 	get-semgrep-rules $LUCA_CONTENT_DIR
 	get-bearer-rules $LUCA_CONTENT_DIR
+	pull_cheats_repos
+    link_navi_cheats
 end
 
 # FUNCTION
@@ -52,8 +85,10 @@ end
 # then delete them here
 function erase_setup_functions
 	functions -e make_symlinks_for_fish_functions
-	functions -e do_setup
 	functions -e set_env_vars
+	functions -e pull_cheats_repos
+    functions -e link_navi_cheats
+	functions -e do_setup
 end
 
 # ------------------------------------------------------------------------------------------- #
@@ -61,14 +96,6 @@ end
 set_env_vars
 do_setup
 erase_setup_functions
-
-# ------------------------------------------------------------------------------------------- #
-
-rm -rf $NAVI_PATH/personal
-rm -rf $NAVI_PATH/work
-
-git clone https://github.com/raffaele-99/cheats.git $NAVI_PATH/personal
-git clone https://github.com/luca-tanto/cheats.git $NAVI_PATH/work
 
 # ------------------------------------------------------------------------------------------- #
 
