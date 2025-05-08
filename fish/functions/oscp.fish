@@ -1,4 +1,4 @@
-function nv
+function oscp
     set -l base_path "$NAVI_PATH/personal/pen200"
     set -l paths "$base_path/main"
 
