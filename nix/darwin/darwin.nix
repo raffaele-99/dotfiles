@@ -66,20 +66,12 @@
     dock.mru-spaces = false;
     dock.orientation = "bottom";
     dock.autohide = false;
-    dock.persistent-apps = [
-      "/Applications/Arc.app"
-      "/Applications/Burp Suite Professional.app"
-      "/Applications/Firefox Developer Edition.app"
-      "/Applications/Ghostty.app"
-      "/System/Applications/Calendar.app"
-      "/Applications/Slack.app"
-    ];
     finder.AppleShowAllExtensions = true;
     finder.FXPreferredViewStyle = "clmv";
-    loginwindow.LoginwindowText = ".";
+    # loginwindow.LoginwindowText = ".";
     loginwindow.GuestEnabled = false;
     NSGlobalDomain.KeyRepeat = 2;
-    screencapture.location = "~/Pictures/screenshots";
+    # screencapture.location = "~/Pictures/screenshots";
   };
 
   security.pam.services.sudo_local.touchIdAuth = true;

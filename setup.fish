@@ -12,7 +12,8 @@ end
 
 # FUNCTION
 # make_symlinks_for_fish_functions
-# this goes through each file in the fish/functions directory and creates a symlink to it inside $HOME/.config/fish/functions
+# this goes through each file in the fish/functions directory and creates a symlink to it inside
+# $HOME/.config/fish/functions
 function make_symlinks_for_fish_functions
 	set -l src "$HOME/dotfiles/fish/functions"
 	set -l dest "$HOME/.config/fish/functions"
@@ -76,7 +77,7 @@ function do_setup
 	get-semgrep-rules $LUCA_CONTENT_DIR
 	get-bearer-rules $LUCA_CONTENT_DIR
 	pull_cheats_repos
-    link_navi_cheats
+	link_navi_cheats
 end
 
 # FUNCTION
@@ -87,7 +88,7 @@ function erase_setup_functions
 	functions -e make_symlinks_for_fish_functions
 	functions -e set_env_vars
 	functions -e pull_cheats_repos
-    functions -e link_navi_cheats
+	functions -e link_navi_cheats
 	functions -e do_setup
 end
 
